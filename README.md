@@ -1,4 +1,4 @@
-**## Overview**
+## Overview
 __This feature originally built for MySQL 5.7__
 
 A deprecation feature for `stored procedure` and `user defined function` on the database level.
