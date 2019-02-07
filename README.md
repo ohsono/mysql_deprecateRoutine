@@ -24,15 +24,15 @@ This feature consists of `3 major components`:
   - `deprecated.Proc_DBA_DeprecateRoutines`
     - Deprecate Routines (Stored Procedures or Functions)
     
-    '''
-    # parms:
-    # - object_source: the name of the database schema where object currently placed i.e.) reporting
-    # - object_destination: the name of the database schema where object ended up. i.e.) deprecated
-    # - object_name: the name of object (stored procedure or function)
-    # - object_type: type ('procedure' or 'function')
+    ```
+    * params:
+     - object_source: the name of the database schema where object currently placed i.e.) reporting
+     - object_destination: the name of the database schema where object ended up. i.e.) deprecated
+     - object_name: the name of object (stored procedure or function)
+     - object_type: type ('procedure' or 'function')
 
     call `deprecated.Proc_DBA_DeprecateRoutines` ('reporting','deprecated','Proc_daily_report','procedure'); 
-    '''
+    ```
 
   - `deprecated.Proc_RenameDeprecatedFN`
     - TBD
