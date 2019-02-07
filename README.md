@@ -35,7 +35,12 @@ This feature consists of `3 major components`:
     ```
 
   - `deprecated.Proc_RenameDeprecatedFN`
-    - TBD
+    - Rename procedure to follow our naming convention 
+    ```
+    # nameing convention 
+    - {Procedure_name}_DEPR_YYYYMMDD
+    call `deprecated.Proc_RenameDeprecatedFN` ('reporting','Proc_daily_report','Proc_daily_report_DEPR_20190101');
+    ```
 
   - `deprecated.Proc_RenameDeprecatedSP`
-    - TBD
+    - 
