@@ -35,12 +35,18 @@ This feature consists of `3 major components`:
     ```
 
   - `deprecated.Proc_RenameDeprecatedFN`
+    - Rename functions to follow our naming convention 
+    ```
+    # nameing convention 
+    - {function_name}_DEPR_YYYYMMDD
+    call `deprecated.Proc_RenameDeprecatedFN` ('reporting','fn_daily_report','fn_daily_report_DEPR_20190101');
+    ```
+
+  - `deprecated.Proc_RenameDeprecatedSP`
     - Rename procedure to follow our naming convention 
     ```
     # nameing convention 
     - {Procedure_name}_DEPR_YYYYMMDD
-    call `deprecated.Proc_RenameDeprecatedFN` ('reporting','Proc_daily_report','Proc_daily_report_DEPR_20190101');
+    call `deprecated.Proc_RenameDeprecatedSP` ('reporting','Proc_daily_report','Proc_daily_report_DEPR_20190101');
     ```
 
-  - `deprecated.Proc_RenameDeprecatedSP`
-    - 
