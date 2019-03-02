@@ -1,6 +1,7 @@
-DROP IF EXISTS PROCEDURE `deprecated`.`Proc_DBA_DeprecateRoutines`;
+DROP PROCEDURE IF EXISTS `deprecated`.`Proc_DBA_DeprecateRoutines`;
 
 DELIMITER $$
+
 CREATE PROCEDURE `deprecated`.`Proc_DBA_DeprecateRoutines`(
 	object_source varchar(60),
     object_destination VARCHAR(60),
@@ -51,7 +52,7 @@ Proc_LV:BEGIN
     IF (naming_limits < 1)
     THEN
 	     SET naming_limits = 64-14;
-    END IF
+    END IF;
 
     ##Reminder!! procedure name limits 64 char but we should consider the DEPR name with 14 char more due to our naming rule (_DEPR_YYYYMMDD) ##
     IF ((char_length(object_name) > naming_limits) AND (object_name regexp(regex_rule)) = 0) THEN
@@ -214,4 +215,5 @@ Proc_LV:BEGIN
 		deprecated.UDF_DBA_FindObjects_isExist(object_destination, DEPR) AS dest_final_check;
 
 END$$
+
 DELIMITER ;

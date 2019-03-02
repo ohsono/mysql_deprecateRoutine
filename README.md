@@ -50,3 +50,36 @@ This feature consists of `3 major components`:
     call `deprecated.Proc_RenameDeprecatedSP` ('reporting','Proc_daily_report','Proc_daily_report_DEPR_20190101');
     ```
 
+## Test
+ - create test database
+ - create test.Proc_test1234
+ - create test.FN_test1234
+ - call deprecated.Proc_DBA_DeprecateRoutines for both function and procedure
+ - sample output
+ ```
+ mysql> select * from deprecated.DBA_migration_log;
+ +-----+---------------------+---------------------------------------------------------------+----------------+----------------+------------+-----------+---------------------+
+ | uid | migration_status_id | log_text                                                      | status_flag_id | condition_code | error_code | error_num | log_date            |
+ +-----+---------------------+---------------------------------------------------------------+----------------+----------------+------------+-----------+---------------------+
+ |   1 |                  -1 | checking object_type                                          |              0 |           NULL | NULL       |      NULL | 2019-03-01 18:39:44 |
+ |   2 |                   1 | passed init                                                   |              1 |           NULL | NULL       |      NULL | 2019-03-01 18:39:44 |
+ |   3 |                   1 | entering [mysql.procs_priv]!                                  |              4 |           NULL | NULL       |      NULL | 2019-03-01 18:39:45 |
+ |   4 |                   1 | [mysql.procs_priv]: moving completed!                         |              5 |           NULL | NULL       |      NULL | 2019-03-01 18:39:45 |
+ |   5 |                   1 | entering [mysql.proc]!                                        |              6 |           NULL | NULL       |      NULL | 2019-03-01 18:39:45 |
+ |   6 |                   1 | [mysql.proc]: routines migration completed!                   |              7 |           NULL | NULL       |      NULL | 2019-03-01 18:39:45 |
+ |   7 |                   1 | {deprecated.Proc_test1234_DEPR_20190301}: migration comleted! |              8 |           NULL | NULL       |      NULL | 2019-03-01 18:39:45 |
+ |   8 |                  -1 | checking object_type                                          |              0 |           NULL | NULL       |      NULL | 2019-03-01 18:39:45 |
+ |   9 |                   2 | passed init                                                   |              1 |           NULL | NULL       |      NULL | 2019-03-01 18:39:45 |
+ |  10 |                   2 | {Proc_test1234} cannot be found or exist already!             |              1 |              1 | 42000      |      1644 | 2019-03-01 18:39:45 |
+ +-----+---------------------+---------------------------------------------------------------+----------------+----------------+------------+-----------+---------------------+
+ 10 rows in set (0.00 sec)
+
+ mysql> select * from deprecated.DBA_migration_status;
+ +-----+--------+-------------+---------------+-----------------------------+-------------+---------------------+---------------------+---------------------------------------------------------------+-------------+
+ | uid | source | destination | object_name   | object_newname              | object_type | create_date         | update_date         | comments                                                      | status_flag |
+ +-----+--------+-------------+---------------+-----------------------------+-------------+---------------------+---------------------+---------------------------------------------------------------+-------------+
+ |   1 | test   | deprecated  | Proc_test1234 | Proc_test1234_DEPR_20190301 | procedure   | 2019-03-01 18:39:44 | 2019-03-01 18:39:45 | {deprecated.Proc_test1234_DEPR_20190301}: migration comleted! |           1 |
+ |   2 | test   | deprecated  | Proc_test1234 | Proc_test1234_DEPR_20190301 | function    | 2019-03-01 18:39:45 | 2019-03-01 18:39:45 | {Proc_test1234} cannot be found or exist already!             |           1 |
+ +-----+--------+-------------+---------------+-----------------------------+-------------+---------------------+---------------------+---------------------------------------------------------------+-------------+
+ 2 rows in set (0.00 sec)
+ ```

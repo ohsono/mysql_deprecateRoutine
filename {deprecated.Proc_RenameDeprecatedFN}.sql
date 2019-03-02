@@ -1,5 +1,6 @@
+DROP PROCEDURE IF EXISTS `deprecated`.`Proc_RenameDeprecatedFN`;
 DELIMITER $$
-CREATE DEFINER=`hochanson`@`localhost` PROCEDURE `Proc_RenameDeprecatedFN`(dbschema varchar(20), origin varchar(100), destin varchar(100))
+CREATE PROCEDURE `deprecated`.`Proc_RenameDeprecatedFN`(dbschema varchar(20), origin varchar(100), destin varchar(100))
 BEGIN
 
 	#DECLARE destin varchar(200);
@@ -15,8 +16,6 @@ BEGIN
 	IF (destin is null or destin = '') THEN
 		SET destin = CONCAT(origin,'_DEPR_',curdate()+0);
 	END IF;
-
-  #  select origin, destin;
 
 
 	START TRANSACTION;

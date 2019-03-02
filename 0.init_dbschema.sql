@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `deprecated`.`DBA_migration_status` (
   UNIQUE KEY `unique_check` (`source`,`destination`,`object_name`,`object_newname`,`object_type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `depreated`.`DBA_migration_log` (
+CREATE TABLE IF NOT EXISTS `deprecated`.`DBA_migration_log` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `migration_status_id` int(11) NOT NULL,
   `log_text` text,
