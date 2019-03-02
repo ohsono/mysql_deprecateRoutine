@@ -19,6 +19,7 @@ DELIMITER ;
 
 
 call `deprecated`.`Proc_DBA_DeprecateRoutines` ('test','deprecated','Proc_test1234','procedure');
+call `deprecated`.`Proc_DBA_DeprecateRoutines` ('test','deprecated','Proc_test1234','procedure');
 
 
 DROP FUNCTION IF EXISTS `test`.`FN_test1234`;
@@ -32,4 +33,5 @@ begin
 end$$
 DELIMITER ;
 
-call `deprecated`.`Proc_DBA_DeprecateRoutines` ('test','deprecated','Proc_test1234','function');
+call `deprecated`.`Proc_DBA_DeprecateRoutines` ('test','deprecated','FN_test1234','function');
+call `deprecated`.`Proc_DBA_DeprecateRoutines` ('test','deprecated','FN_test1234','function');
